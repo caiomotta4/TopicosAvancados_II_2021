@@ -7330,19 +7330,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Caio\\.nuget\\packages\\": {}
+    "C:\\Users\\leona\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Program Files (x86)\\Microsoft Visual Studio\\Projetos\\ProjCine\\ProjCine.csproj",
+      "projectUniqueName": "C:\\TopicosAvancadosEmSistemasDeInformacaoII\\SolutionCine\\ProjCine\\ProjCine.csproj",
       "projectName": "ProjCine",
-      "projectPath": "D:\\Program Files (x86)\\Microsoft Visual Studio\\Projetos\\ProjCine\\ProjCine.csproj",
-      "packagesPath": "C:\\Users\\Caio\\.nuget\\packages\\",
-      "outputPath": "D:\\Program Files (x86)\\Microsoft Visual Studio\\Projetos\\ProjCine\\obj\\",
+      "projectPath": "C:\\TopicosAvancadosEmSistemasDeInformacaoII\\SolutionCine\\ProjCine\\ProjCine.csproj",
+      "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
+      "outputPath": "C:\\TopicosAvancadosEmSistemasDeInformacaoII\\SolutionCine\\ProjCine\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Caio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7405,7 +7405,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
       }
     }
   }

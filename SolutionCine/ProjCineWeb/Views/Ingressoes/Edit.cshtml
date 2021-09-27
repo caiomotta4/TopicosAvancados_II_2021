@@ -19,6 +19,20 @@
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Cliente" class="control-label"></label>
+                <select asp-for="Cliente" id="Cliente" name="Cliente" asp-items="@Model.Clientes" class="form-control">
+                    <option>@Model.Cliente.NomeCliente</option>
+                </select>
+                <span asp-validation-for="Cliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Filme" class="control-label"></label>
+                <select asp-for="Filme" id="Filme" name="Filme" asp-items="@Model.Filmes" class="form-control">
+                    <option>@Model.Filme.NomeFilme</option>
+                </select>
+                <span asp-validation-for="Filme" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="DataHora" class="control-label"></label>
                 <input asp-for="DataHora" class="form-control" />
                 <span asp-validation-for="DataHora" class="text-danger"></span>

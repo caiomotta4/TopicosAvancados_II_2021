@@ -22,7 +22,11 @@ namespace ProjCineWeb.Controllers
         // GET: Ingressoes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Ingresso.ToListAsync());
+            var cli = await _context.Ingresso.Include(c => c.Cliente).ToListAsync();
+            var film = await _context.Ingresso.Include(f => f.Filme).ToListAsync();
+
+            //return View(await _context.Ingresso.ToListAsync());
+            return View(cli);
         }
 
         // GET: Ingressoes/Details/5
@@ -46,7 +50,24 @@ namespace ProjCineWeb.Controllers
         // GET: Ingressoes/Create
         public IActionResult Create()
         {
-            return View();
+            var i = new Ingresso();
+            var clientes = _context.Cliente.ToList();
+            var filmes = _context.Filme.ToList();
+
+            i.Clientes = new List<SelectListItem>();
+            i.Filmes = new List<SelectListItem>();
+
+            foreach (var cli in clientes)
+            {
+                i.Clientes.Add(new SelectListItem { Text = cli.NomeCliente, Value = cli.Id.ToString() });
+            }
+
+            foreach (var film in filmes)
+            {
+                i.Filmes.Add(new SelectListItem { Text = film.NomeFilme, Value = film.Id.ToString() });
+            }
+
+            return View(i);
         }
 
         // POST: Ingressoes/Create
@@ -56,6 +77,14 @@ namespace ProjCineWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Valor,DataHora")] Ingresso ingresso)
         {
+            int _clienteId = int.Parse(Request.Form["Cliente"].ToString());
+            var cliente = _context.Cliente.FirstOrDefault(c => c.Id == _clienteId);
+            ingresso.Cliente = cliente;
+
+            int _filmeId = int.Parse(Request.Form["Filme"].ToString());
+            var filme = _context.Filme.FirstOrDefault(f => f.Id == _filmeId);
+            ingresso.Filme = filme;
+
             if (ModelState.IsValid)
             {
                 _context.Add(ingresso);
@@ -73,7 +102,30 @@ namespace ProjCineWeb.Controllers
                 return NotFound();
             }
 
-            var ingresso = await _context.Ingresso.FindAsync(id);
+            var ingresso = _context.Ingresso.Include(c => c.Cliente).First(i => i.Id == id);
+
+            var clientes = _context.Cliente.ToList();
+
+            ingresso.Clientes = new List<SelectListItem>();
+
+            foreach (var cli in clientes)
+            {
+                ingresso.Clientes.Add(new SelectListItem { Text = cli.NomeCliente, Value = cli.Id.ToString() });
+            }
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////////
+            
+            ingresso = _context.Ingresso.Include(f => f.Filme).First(i => i.Id == id);
+
+            var filmes = _context.Filme.ToList();
+
+            ingresso.Filmes = new List<SelectListItem>();
+
+            foreach (var film in filmes)
+            {
+                ingresso.Filmes.Add(new SelectListItem { Text = film.NomeFilme, Value = film.Id.ToString() });
+            }
+
             if (ingresso == null)
             {
                 return NotFound();
@@ -92,6 +144,14 @@ namespace ProjCineWeb.Controllers
             {
                 return NotFound();
             }
+
+            int _clienteId = int.Parse(Request.Form["Cliente"].ToString());
+            var cliente = _context.Cliente.FirstOrDefault(c => c.Id == _clienteId);
+            ingresso.Cliente = cliente;
+
+            int _filmeId = int.Parse(Request.Form["Filme"].ToString());
+            var filme = _context.Filme.FirstOrDefault(f => f.Id == _filmeId);
+            ingresso.Filme = filme;
 
             if (ModelState.IsValid)
             {
